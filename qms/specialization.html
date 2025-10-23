@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qcms BY DJO - موقع أسئلة طب الأسنان</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@600&display=swap');
+
+    body {
+      font-family: 'Cairo', Arial, sans-serif;
+      direction: rtl;
+      background: radial-gradient(circle at top, #d9faff, #aee4f5, #7fd4e8);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-illustration {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('A_2D_digital_illustration_login_and_registration_s.png') center/cover no-repeat;
+      opacity: 0.06;
+      z-index: 0;
+    }
+
+    .floating-shapes span {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 50%;
+      animation: float 12s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-1200px) rotate(720deg); }
+    }
+
+    .flag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 50px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .futur-title {
+      background-color: black;
+      color: white;
+      font-size: 20px;
+      padding: 8px 20px;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+      z-index: 3;
+    }
+
+    .site-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      background: linear-gradient(90deg, #00b4d8, #48cae4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      animation: glow 2s ease-in-out infinite alternate;
+      padding: 10px 20px;
+      background-color: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(0, 180, 216, 0.4); }
+      to { text-shadow: 0 0 20px rgba(0, 180, 216, 0.9); }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      width: 320px;
+      max-width: 90%;
+      text-align: center;
+      z-index: 2;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 8px;
+      margin: 15px 0;
+    }
+
+    .btn-option {
+      background: rgba(255,255,255,0.9);
+      border: none;
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      flex-wrap: nowrap;
+    }
+
+    .btn-option span.icon { font-size: 16px; }
+
+    .btn-option:hover {
+      transform: scale(1.05);
+      background: #48cae4;
+      color: white;
+    }
+
+    button.confirm {
+      background: linear-gradient(90deg, #00b4d8, #48cae4);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 25px;
+      margin-top: 8px;
+      width: 100%;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    button.confirm:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(72, 202, 228, 0.6);
+    }
+
+    .switch { margin-top: 12px; font-size: 13px; color: #023e8a; }
+    .switch a { color: #48cae4; text-decoration: none; }
+
+    .news-bar {
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: 100%;
+      padding: 8px 0;
+      position: absolute;
+      bottom: 0;
+      font-size: 14px;
+      overflow: hidden;
+    }
+
+    .news-text {
+      display: inline-block;
+      padding-left: 50%;
+      animation: marquee 15s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ⚡ شاشة التحذير المرعبة */
+    #securityOverlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at center, #000, #0a0a0a, #111);
+      z-index: 9999;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      animation: fadeInOverlay 1s ease;
+    }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #securityOverlay h1 {
+      color: #ff0033;
+      font-size: 32px;
+      text-shadow: 0 0 25px red, 0 0 50px #ff0000;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    #securityOverlay p {
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    #securityOverlay button {
+      margin-top: 40px;
+      background: linear-gradient(90deg, #ff0000, #cc0000);
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+
+    #securityOverlay button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255,0,0,0.8);
+    }
+
+    #smokeBg {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.ibb.co/GH9thFj/smoke-effect.gif') center/cover repeat;
+      opacity: 0.2;
+      z-index: -1;
+      mix-blend-mode: lighten;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-illustration"></div>
+  <div class="floating-shapes">
+    <span style="left:10%; animation-delay:0s;"></span>
+    <span style="left:50%; animation-delay:2s;"></span>
+    <span style="left:80%; animation-delay:4s;"></span>
+  </div>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg" class="flag" alt="علم الجزائر">
+  <div class="futur-title">Futur Doctors Community</div>
+
+  <div class="container">
+    <div class="site-title">Qcms BY DJO</div>
+    <h1>اختر التخصص والمستوى</h1>
+
+    <div id="specialties" class="options-grid">
+      <button class="btn-option" onclick="selectSpecialty('طب الأسنان')">
+        <span class="icon">🦷</span> طب الأسنان
+      </button>
+    </div>
+
+    <div id="levels" class="options-grid" style="display:none;"></div>
+    <button class="confirm" onclick="saveSelection()">تأكيد</button>
+
+    <div class="switch">
+      <a href="#" onclick="goBack()">العودة إلى الترحيب</a>
+    </div>
+  </div>
+
+  <div class="news-bar">
+    <div class="news-text">
+      🦷 كل الحقوق محفوظة © 2025 - نحن الجيل الصاعد، خُلقنا للتغيير، صناع الابتسامة كتاب المجد ورمز الرقي رسالة الشفاء 💫
+    </div>
+  </div>
+
+  <!-- 🩸 نافذة التحذير المرعبة -->
+  <div id="securityOverlay">
+    <div id="smokeBg"></div>
+    <h1>🚫 تحذير أمني صارم</h1>
+    <p>
+      يُمنع <strong>مشاركة الحساب</strong> أو <strong>التقاط الشاشة</strong> أو <strong>نشر أي محتوى</strong> من الموقع.<br><br>
+      ⚠️ أي مخالفة تؤدي إلى <span style="color:#ff5555;">إغلاق الحساب نهائيًا</span>.<br>
+      🔥 النظام يُراقِب نشاط المستخدمين للحفاظ على الأمان الأكاديمي.
+    </p>
+    <button onclick="closeWarning()">✅ فهمت</button>
+  </div>
+
+  <script>
+    let selectedSpecialty = "";
+    let selectedLevel = "";
+
+    function selectSpecialty(spec) {
+      selectedSpecialty = spec;
+      const levelsDiv = document.getElementById('levels');
+      levelsDiv.innerHTML = '';
+
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-option';
+        btn.innerHTML = `<span class="icon">🎓</span> سنة ${i}`;
+        btn.onclick = () => {
+          selectedLevel = `سنة ${i}`;
+          highlightLevel(btn);
+        };
+        levelsDiv.appendChild(btn);
+      }
+      levelsDiv.style.display = 'grid';
+    }
+
+    function highlightLevel(btn) {
+      document.querySelectorAll('#levels .btn-option').forEach(b => {
+        b.style.background = 'rgba(255,255,255,0.9)';
+        b.style.color = '';
+      });
+      btn.style.background = '#48cae4';
+      btn.style.color = 'white';
+    }
+
+    function saveSelection() {
+      if (!selectedSpecialty || !selectedLevel) {
+        alert('من فضلك اختر التخصص والمستوى الدراسي');
+        return;
+      }
+      localStorage.setItem('specialty', selectedSpecialty);
+      localStorage.setItem('level', selectedLevel);
+      window.location.href = 'subjects.html';
+    }
+
+    function goBack() {
+      window.location.href = 'welcome.html';
+    }
+
+    // ⚡ عرض التحذير مرة واحدة فقط
+    const shownKey = "__warning_specialization_once";
+    window.addEventListener("load", () => {
+      if (!localStorage.getItem(shownKey)) {
+        document.getElementById("securityOverlay").style.display = "flex";
+      }
+    });
+
+    function closeWarning() {
+      document.getElementById("securityOverlay").style.display = "none";
+      localStorage.setItem(shownKey, "true");
+    }
+  </script>
+</body>
+</html>
